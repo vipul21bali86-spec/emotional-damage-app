@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Bureau of Emotional Damage</title>
+<meta name="description" content="Audit your manager, peers and family. Download the receipt.">
+<meta property="og:title" content="The Bureau of Emotional Damage">
+<meta property="og:description" content="Annual review of emotional damage, chai breaks, and corporate survival. Generate your audit receipt.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{--bg:#f4f4f0;--ink:#161616;--card:#fff;--line:#d9d9d2;--mute:#6b6b66;--y:#FFD000;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121212;--ink:#f1f1ec;--card:#1d1d1b;--line:#3a3a36;--mute:#9a9a92}}
+:root[data-theme="dark"]{--bg:#121212;--ink:#f1f1ec;--card:#1d1d1b;--line:#3a3a36;--mute:#9a9a92}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;line-height:1.4}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.banner{background:var(--y);color:#161616;padding:22px 16px;border-bottom:3px solid #161616}
+.banner h1{margin:0;font-weight:900;font-size:clamp(26px,5vw,48px);letter-spacing:-.02em;line-height:1}
+.banner p{margin:8px 0 0;font-size:15px;font-weight:500;max-width:60ch}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.tabs{display:flex;gap:8px;margin:20px 0}
+.tab{flex:1;padding:14px 10px;border:2px solid var(--ink);background:var(--card);color:var(--ink);font:800 15px 'Archivo',sans-serif;cursor:pointer;border-radius:10px;transition:.2s}
+.tab[aria-selected=true]{background:var(--y);color:#161616;box-shadow:4px 4px 0 var(--ink);transform:translate(-2px,-2px)}
+.grid{display:grid;gap:24px;padding-bottom:40px}
+@media(min-width:900px){.grid{grid-template-columns:1fr 400px;align-items:start}.sticky{position:sticky;top:16px}}
+.panel{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:18px}
+label.f{display:block;font-weight:700;font-size:13px;margin-bottom:12px}
+input[type=text],input[type=date]{display:block;width:100%;margin-top:4px;padding:10px;border:2px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:500 14px 'IBM Plex Mono',monospace}
+input:focus,button:focus-visible{outline:3px solid var(--y);outline-offset:1px;border-color:var(--ink)}
+.row2{display:grid;gap:0 12px;grid-template-columns:1fr 1fr}
+h3{margin:18px 0 8px;font-size:14px;font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:8px 12px;border:2px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);font:500 13px 'IBM Plex Mono',monospace;cursor:pointer;text-align:left;transition:.15s}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--y);color:#161616;border-color:#161616;font-weight:700}
+.stars{display:flex;gap:4px}
+.star{font-size:34px;background:none;border:0;cursor:pointer;color:var(--line);padding:0 2px;transition:transform .15s,color .15s}
+.star.on{color:#f5a800}.star:hover{transform:scale(1.2)}
+.dl{width:100%;margin-top:14px;padding:16px;background:#161616;color:var(--y);border:2px solid #161616;border-radius:10px;font:800 16px 'Archivo',sans-serif;cursor:pointer;transition:.2s}
+.dl:hover{background:var(--y);color:#161616}
+.dl:disabled{opacity:.6}
+.hint{font-size:12px;color:var(--mute);text-align:center;margin:8px 0 0}
+.stage{background:repeating-linear-gradient(45deg,transparent 0 10px,rgba(128,128,128,.07) 10px 20px);padding:16px;border-radius:12px;overflow-x:auto}
+/* receipt: always light, regardless of theme */
+#receipt{width:100%;max-width:368px;margin:0 auto;background:#fff;color:#161616;padding:20px 18px 18px;font-family:'IBM Plex Mono',monospace;font-size:12px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+#receipt .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+#receipt .ttl{background:#FFD000;border:2px solid #161616;padding:8px 10px;font:900 19px/1.05 'Archivo',sans-serif;letter-spacing:-.01em}
+#receipt .ttl small{display:block;font:700 10px 'IBM Plex Mono',monospace;margin-top:5px;letter-spacing:0}
+#receipt .bar{flex:none;text-align:right;font-size:9px}
+#receipt .bar svg{display:block;height:44px;width:78px}
+.dash{border-top:2px dashed #161616;margin:12px 0}
+.kv{display:flex;justify-content:space-between;gap:10px;margin:3px 0}
+.kv b{font-weight:700;text-align:right;max-width:62%;word-break:break-word}
+.item{margin:7px 0}.item .q{color:#6b6b66;font-size:10.5px}.item .a{font-weight:700;display:flex;justify-content:space-between;gap:8px}
+.item .a i{font-style:normal;white-space:nowrap}
+.find{margin:3px 0}
+.score{display:flex;justify-content:space-between;align-items:center;background:#161616;color:#FFD000;padding:10px;margin-top:4px}
+.score .n{font:900 28px 'Archivo',sans-serif}
+.verdict{text-align:center;margin-top:10px}.verdict .s{font-size:24px;letter-spacing:3px;color:#f5a800}
+.verdict .l{font:800 14px 'Archivo',sans-serif}
+.ft{text-align:center;font-size:10px;margin-top:12px;color:#6b6b66}
+.empty{color:#9a9a92}
+</style>
+</head>
+<body>
+<header class="banner"><div class="wrap" style="padding:0">
+<h1>THE BUREAU OF EMOTIONAL DAMAGE</h1>
+<p>Annual review of emotional damage, chai breaks, and corporate survival.</p>
+</div></header>
+
+<main class="wrap">
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" data-mode="office">💼 Office &amp; Manager Audit</button>
+<button class="tab" role="tab" data-mode="family">🏠 Family Member Audit</button>
+</div>
+<div class="grid">
+<section class="panel" id="form" aria-label="Audit form"></section>
+<aside class="sticky">
+<div class="stage"><div id="receipt"></div></div>
+<button class="dl" id="dl">Download Audit Card as Image</button>
+<p class="hint">Saves a PNG you can share on WhatsApp, Instagram or LinkedIn.</p>
+</aside>
+</div>
+</main>
+
+<script>
+const MODES={
+family:{
+ title:'FAMILY AUDIT REPORT',sub:'Household Division',
+ fields:[['name','Family member under audit','text','Name'],['rel','Relation','text','Bhai, Mausi, Papa, Chacha'],['by','Filed by','text','Your name']],
+ metrics:[
+  ['tv','Fights over TV remote / AC temperature',['0–5','6–20','20+']],
+  ['borrow','Items borrowed and permanently relocated',['0','1–5 chargers / tiffin boxes','10+ entire wardrobe']],
+  ['money','Money borrowed / UPI requests',['Settles instantly','Promises next month','Treats wallet like trust fund']],
+  ['secret','Secrets taking to the grave',['Clean record','Absolute blackmail material','Mutually assured destruction']],
+  ['cover','Times covered up for each other',['Zero loyalty','Professional co-conspirators']]],
+ findings:['Certified household menace','Still owes money',"Mom's favorite (denies it)",'Surprisingly decent human','Uses "Sharma ji\'s child" as a weapon',"Family WhatsApp group's main character"],
+ rate:'Final verdict',
+ verdicts:['Return to sender','Barely tolerable','Acceptable','Solid human','Frame this one'],
+ foot:'THANK YOU FOR YOUR TRAUMA'},
+office:{
+ title:'OFFICE AUDIT REPORT',sub:'Peer & Manager Division',
+ fields:[['name','Peer / Manager under audit','text','Name'],['by','Filed by','text','Your name'],['dept','Team / Department','text','e.g. Ops, Credit, IT']],
+ metrics:[
+  ['email','Frequency of saying "Per my last email"',['0–2','3–10','20+ weaponized passive-aggression']],
+  ['desk','Items borrowed from desk',['0','1–3 pens / stapler','5+ chargers / ergonomic mouse']],
+  ['chai','Chai / tapri break frequency',['Only lunch','2 regular breaks','Vanishes 45 mins during deployments']],
+  ['chat','Chat status vs reality',['Green light, active','Offline while running macros','"In client meeting", chilling in cafeteria']]],
+ findings:['Certified VLOOKUP Sorcerer','Uses "Let\'s circle back" to escape','Expert in 4 PM samosa logistics','Treats feedback like a UPSC interview','Master of camera-off mode'],
+ rate:'Workplace survival rating',
+ verdicts:['Resign now','Hostile terrain','Survivable','Good chai buddy','Elite colleague'],
+ foot:'THIS MEETING COULD HAVE BEEN AN EMAIL'}
+};
+const today=new Date().toISOString().slice(0,10);
+const S={};for(const k in MODES)S[k]={v:{date:today},m:{},f:new Set(),r:0};
+let mode='office';
+const $=s=>document.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function buildForm(){
+ const M=MODES[mode],st=S[mode];let h='<div class="row2">';
+ M.fields.forEach(([k,l,t,p],i)=>{h+=`<label class="f">${l}<input type="text" data-f="${k}" placeholder="${p}" value="${esc(st.v[k]||'')}" maxlength="40"></label>`});
+ h+=`<label class="f">Date<input type="date" data-f="date" value="${st.v.date}"></label></div>`;
+ M.metrics.forEach(([k,q,o])=>{h+=`<h3>${q}</h3><div class="chips">${o.map((x,i)=>`<button type="button" class="chip${st.m[k]===i?' on':''}" data-m="${k}" data-i="${i}">${x}</button>`).join('')}</div>`});
+ h+=`<h3>Audit findings</h3><div class="chips">${M.findings.map((x,i)=>`<button type="button" class="chip${st.f.has(i)?' on':''}" data-fi="${i}">${esc(x)}</button>`).join('')}</div>`;
+ h+=`<h3>${M.rate}</h3><div class="stars">${[1,2,3,4,5].map(n=>`<button type="button" class="star${n<=st.r?' on':''}" data-s="${n}" aria-label="${n} star">★</button>`).join('')}</div>`;
+ $('#form').innerHTML=h;
+}
+function barcode(seed){
+ let x=0,h=0;for(const c of seed)h=(h*31+c.charCodeAt(0))>>>0;
+ let out='',w=78;
+ while(x<w){h=(h*1664525+1013904223)>>>0;const bw=1+(h>>>28)%3;if(((h>>>20)&1))out+=`<rect x="${x}" y="0" width="${bw}" height="44" fill="#161616"/>`;x+=bw+1}
+ return `<svg viewBox="0 0 78 44" xmlns="http://www.w3.org/2000/svg">${out}</svg>`;
+}
+function score(){
+ const M=MODES[mode],st=S[mode];let t=0,n=0;
+ M.metrics.forEach(([k,,o])=>{if(st.m[k]!=null){t+=st.m[k]/(o.length-1);n++}});
+ const base=n?t/n*70:0;
+ return Math.min(100,Math.round(base+st.f.size*6));
+}
+function receipt(){
+ const M=MODES[mode],st=S[mode],v=st.v;
+ const no=(v.name||'').trim()||(v.by||'').trim()?String([...(v.name||'')+(v.by||'')].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7)).slice(-6).padStart(6,'0'):'000000';
+ const d=v.date?new Date(v.date+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):'—';
+ const kv=(a,b)=>`<div class="kv"><span>${a}</span><b>${b?esc(b):'<span class="empty">—</span>'}</b></div>`;
+ let h=`<div class="top"><div class="ttl">${M.title}<small>${M.sub}</small></div><div class="bar">${barcode(no+mode)}<div>#BED-${no}</div></div></div><div class="dash"></div>`;
+ M.fields.forEach(([k,l])=>h+=kv(l.replace(' under audit','').replace('Peer / Manager','Subject').replace('Family member','Subject'),v[k]));
+ h=h.replace(/Subject<\/span>/,'Subject</span>');
+ h+=kv('Date',d)+'<div class="dash"></div>';
+ M.metrics.forEach(([k,q,o],i)=>{const sel=st.m[k];h+=`<div class="item"><div class="q">${q}</div><div class="a"><span>${sel!=null?esc(o[sel]):'<span class="empty">not audited</span>'}</span><i>${sel!=null?(sel+1)+'/'+o.length:''}</i></div></div>`});
+ h+='<div class="dash"></div><div style="font-weight:700;margin-bottom:4px">FINDINGS</div>';
+ h+=st.f.size?[...st.f].sort().map(i=>`<div class="find">▪ ${esc(M.findings[i])}</div>`).join(''):'<div class="empty">No findings recorded</div>';
+ h+=`<div class="dash"></div><div class="score"><span>DAMAGE SCORE</span><span class="n">${score()}/100</span></div>`;
+ h+=`<div class="verdict"><div>${M.rate.toUpperCase()}</div><div class="s">${'★'.repeat(st.r)}${'<span style="color:#ddd">'+'★'.repeat(5-st.r)+'</span>'}</div><div class="l">${st.r?M.verdicts[st.r-1]:'Awaiting verdict'}</div></div>`;
+ h+=`<div class="dash"></div><div class="ft">${M.foot}<br>bureau of emotional damage · not legally binding</div>`;
+ $('#receipt').innerHTML=h;
+}
+function setMode(m){
+ mode=m;
+ document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.mode===m));
+ buildForm();receipt();
+}
+const form=$('#form');
+form.addEventListener('input',e=>{const k=e.target.dataset.f;if(k){S[mode].v[k]=e.target.value;receipt()}});
+form.addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b)return;const st=S[mode];
+ if(b.dataset.m){const k=b.dataset.m,i=+b.dataset.i;st.m[k]=st.m[k]===i?null:i;
+  b.parentNode.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',st.m[k]===+c.dataset.i))}
+ else if(b.dataset.fi!=null){const i=+b.dataset.fi;st.f.has(i)?st.f.delete(i):st.f.add(i);b.classList.toggle('on')}
+ else if(b.dataset.s){const n=+b.dataset.s;st.r=st.r===n?0:n;b.parentNode.querySelectorAll('.star').forEach(s=>s.classList.toggle('on',+s.dataset.s<=st.r))}
+ receipt();
+});
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>setMode(t.dataset.mode));
+$('#dl').onclick=async()=>{
+ const b=$('#dl');b.disabled=true;b.textContent='Printing…';
+ try{
+  if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+  const c=await html2canvas($('#receipt'),{scale:3,backgroundColor:'#ffffff',useCORS:true});
+  const url=c.toDataURL('image/png');
+  const a=document.createElement('a');a.href=url;a.download='emotional-damage-audit-'+mode+'.png';
+  document.body.appendChild(a);a.click();a.remove();
+  b.textContent='Downloaded ✓';
+ }catch(err){b.textContent='Download failed, try again'}
+ setTimeout(()=>{b.disabled=false;b.textContent='Download Audit Card as Image'},1800);
+};
+setMode('office');
+</script>
+</body>
+</html>
